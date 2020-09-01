@@ -2,5 +2,4 @@
 
 Code accompanying arXiv:2008.13038
 
-![image]
-(https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Causal-formative_measurement.png/800px-Causal-formative_measurement.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Causal-formative_measurement.png/800px-Causal-formative_measurement.png>
