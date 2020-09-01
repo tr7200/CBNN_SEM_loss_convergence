@@ -8,7 +8,7 @@ Structural equation modeling provides a means of estimating such relationships. 
 
 ![Path_diagram.png](Path_diagram.png)
 
-In arXiv 2008.13038, I take this structural model and turn it into the following causal Bayesian neural network:
+In arXiv 2008.13038, I take that structural model and turn it into the following causal Bayesian neural network:
 
 ![Figure4.jpg](Figure4.jpg)
 
