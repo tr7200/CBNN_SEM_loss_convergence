@@ -8,10 +8,10 @@ Structural equation modeling provides a means of estimating such relationships. 
 
 ![Path_diagram.png](Path_diagram.png)
 
-In arXiv 2008.13038, I take that structural model and turn it into the following [causal Bayesian neural network](https://www.quantamagazine.org/to-build-truly-intelligent-machines-teach-them-cause-and-effect-20180515/):
+In [arXiv 2008.13038](https://arxiv.org/abs/2008.13038), I take that structural model and turn it into the following [causal Bayesian neural network](https://www.quantamagazine.org/to-build-truly-intelligent-machines-teach-them-cause-and-effect-20180515/):
 
 ![Figure4.jpg](Figure4.jpg)
 
-Why? The processing of tuning such a neural network can reveal much about the relationship between the features and firm performance. If hyperparameter tuning chooses neural network layer densities that are wider than the number of features in a particular node, then that indicates greater aleotoric uncertainty, and that prediction might improve with the addition of other features. In domains such as alternative data for investments and [other areas](https://www.youtube.com/watch?v=DEHqIxX1Kq4) [of finance](https://youtu.be/LlzVlqVzeD8), that can indicate causal indicators that could use additional research.
+Why? The processing of tuning such a neural network can reveal much about the relationship between the features and firm performance. If hyperparameter tuning chooses neural network layer densities that are wider than the number of features in a particular node, then that indicates greater aleotoric uncertainty, and that prediction might improve with the addition of other features. In domains such as alternative data for investments and [other areas](https://youtu.be/DEHqIxX1Kq4) [of finance](https://youtu.be/LlzVlqVzeD8), that can indicate causal indicators that could use additional research.
 
-It can also provide estimates of the uncertainty in prediction. This research shows that removing the SEM node with the weakest causal connection to firm performance speeds up the time to finding those estimates when uncertainty is added to the neural network with the Kullback-Leibler divergence. The code uses version 0.7.0 of Tensorflow-probability.
+It can also provide estimates of the uncertainty in prediction. This research shows that removing the SEM node with the weakest causal connection to firm performance speeds up the time to finding those estimates when uncertainty is added to the neural network using the Kullback-Leibler divergence. The code uses version 0.7.0 of Tensorflow-probability.
