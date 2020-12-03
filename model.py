@@ -50,11 +50,10 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     sm_bd_combined_out = tfp.layers.DenseFlipout(48, activation='relu', name = 'dense1', kernel_divergence_fn=kernel_divergence_fn)(sm_bd_combined )
     as_and_sm_bd_combined = concatenate([sm_bd_combined_out, as_input])
     as_and_sm_bd_combined_out = tfp.layers.DenseFlipout(3, activation='relu', name = 'dense2', kernel_divergence_fn=kernel_divergence_fn)(as_and_sm_bd_combined)
-    V_struct_1_out  = tfp.layers.DistributionLambda(
-        lambda t: tfp.distributions.Normal(loc=25 + t[..., :1],
-                                           validate_args=True,
-                                           allow_nan_stats=False,
-                                           scale=2 + tf.math.softplus(0.01 * t[..., 1:])))(as_and_sm_bd_combined_out)
+    V_struct_1_out  = tfp.layers.DistributionLambda(lambda t: tfp.distributions.Normal(loc=25 + t[..., :1],
+                                                    validate_args=True,
+                                                    allow_nan_stats=False,
+                                                    scale=2 + tf.math.softplus(0.01 * t[..., 1:])))(as_and_sm_bd_combined_out)
                 
     V_struct_1 = Model([sm_input, bd_input, as_input], V_struct_1_out)
     
@@ -63,14 +62,13 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     negloglik_V_struct_1 = lambda y, p_y: -p_y.log_prob(y) + V_struct_1_kl
     
     V_struct_1.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01),
-                     loss=negloglik_V_struct_1)
+                       loss=negloglik_V_struct_1)
     
     V1_out = V_struct_1([sm_input, bd_input, as_input])
     V1_SM_BD_combined = concatenate([V1_out, bd_input, sm_input])
     V1_SM_BD_combined_out1 = tfp.layers.DenseFlipout(37, activation='relu', name = 'dense3', kernel_divergence_fn=kernel_divergence_fn)(V1_SM_BD_combined)
     V1_SM_BD_combined_out2 = tfp.layers.DenseFlipout(10, activation='relu', name = 'dense4', kernel_divergence_fn=kernel_divergence_fn)(V1_SM_BD_combined_out1)
-    V2_out = tfp.layers.DistributionLambda(
-        lambda t: tfp.distributions.Normal(loc=25 + t[..., :1], 
+    V2_out = tfp.layers.DistributionLambda(lambda t: tfp.distributions.Normal(loc=25 + t[..., :1], 
                                            validate_args=True, 
                                            allow_nan_stats=False,
                                            scale=2 + tf.math.softplus(0.01 * t[..., 1:])))(V1_SM_BD_combined_out2)
@@ -84,11 +82,11 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     losses = lambda y, p_y: negloglik_V_struct_1(y, p_y) + negloglik_V_struct_2(y, p_y)
     
     V_struct_2.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), 
-                  loss=losses)
+                       loss=losses)
     
     result = V_struct_2.fit([SM, BD, AS],
-                      y_train, 
-                      epochs=50,
-                      batch_size=4,
-                      verbose=1,
-                      validation_split=0.05)
+                             y_train, 
+                             epochs=50,
+                             batch_size=4,
+                             verbose=1,
+                             validation_split=0.05)
