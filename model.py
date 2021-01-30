@@ -1,23 +1,29 @@
+import os
 import math
+import random
+import logging
+
 import numpy as np 
 import pandas as pd
-import random
-import logging, os
+
 import tensorflow as tf
 import tensorflow_probability as tfp
 from tensorflow.keras.layers import Input, Lambda
 from tensorflow.keras import Model
 from tensorflow.keras.layers import concatenate
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+
 from sklearn.model_selection import RepeatedKFold
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+
 
 logging.disable(logging.WARNING)
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
-seed = 1387
-random.seed(seed)
-np.random.seed(seed)
+SEED = 1387
+random.seed(SEED)
+np.random.seed(SEED)
+
 
 independent_variables = pd.read_csv('independent_variables.csv', sep=',', header=0).astype('float32')
 firm_performance = pd.read_csv('firm_perf_total.csv', sep=',', header=0)
@@ -26,6 +32,8 @@ kfold = RepeatedKFold(n_splits=10, n_repeats=10, random_state=12345)
 
 val_losses_df = pd.DataFrame()
 losses_df = pd.DataFrame()
+
+
 
 tf.reset_default_graph()
 
@@ -42,12 +50,14 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     sm_input = Input(shape=(9,))
     bd_input = Input(shape=(39,))
     as_input = Input(shape=(12,))
-
     
     kernel_divergence_fn = lambda q, p, _: tfp.distributions.kl_divergence(q, p) / (323 * 1.0)
     
+    
+    # outer chevron
     sm_bd_combined = concatenate([sm_input, bd_input])
     sm_bd_combined_out = tfp.layers.DenseFlipout(48, activation='relu', name = 'dense1', kernel_divergence_fn=kernel_divergence_fn)(sm_bd_combined )
+    
     as_and_sm_bd_combined = concatenate([sm_bd_combined_out, as_input])
     as_and_sm_bd_combined_out = tfp.layers.DenseFlipout(3, activation='relu', name = 'dense2', kernel_divergence_fn=kernel_divergence_fn)(as_and_sm_bd_combined)
     V_struct_1_out  = tfp.layers.DistributionLambda(lambda t: tfp.distributions.Normal(loc=25 + t[..., :1],
@@ -64,6 +74,8 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     V_struct_1.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01),
                        loss=negloglik_V_struct_1)
     
+    
+    # inner chevron
     V1_out = V_struct_1([sm_input, bd_input, as_input])
     V1_SM_BD_combined = concatenate([V1_out, bd_input, sm_input])
     V1_SM_BD_combined_out1 = tfp.layers.DenseFlipout(37, activation='relu', name = 'dense3', kernel_divergence_fn=kernel_divergence_fn)(V1_SM_BD_combined)
@@ -83,6 +95,8 @@ for i, (train_index, test_index) in enumerate(kfold.split(independent_variables)
     
     V_struct_2.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), 
                        loss=losses)
+    
+    
     
     result = V_struct_2.fit([SM, BD, AS],
                              y_train, 
