@@ -1,8 +1,10 @@
 # Loss convergence in a causal Bayesian neural network of retail firm performance
 
-Most causal relationships in machine learning are direct, i.e. all the features predict with no relationship to each other. But what about more complicated causal relationships, such as this?
+Most causal relationships in machine learning are direct, i.e. all the features predict with no causal relationship to each other. But what about more complicated causal relationships, such as this?
 
-![Figure2.jpg](Figure2.jpg)
+<p align="center">
+  <img width="460" height="300" src=Figure2.jpg>
+</p>
 
 Structural equation modeling provides a means of estimating such relationships. In the example of my [research](https://www.koreascience.or.kr/article/JAKO201816357066272.page), co-authored with Professors Youngjin Bahng and Doris Kincaid, the model from that diagram was estimated as an SEM model:
 
