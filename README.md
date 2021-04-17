@@ -24,7 +24,7 @@ Why? Considering the intrinsic properties of the causal Bayesian neural network,
 Extrinsically, the neural network provides a prediction interval with upper and lower bounds that provides an estimate of the amount of uncertainty in prediction. This research shows that removing the SEM node with the weakest causal connection to firm performance speeds up the time to finding that estimate when uncertainty is added to the neural network using the Kullback-Leibler divergence. This opens up the possibility of estimating SEM in this manner after each epoch, in a manner similar to [Dropout](https://patents.google.com/patent/US9406017B2/en) in neural networks, which could be considered 'prior art.' However, this would apply to nodes/edges instead:
 
 <p align="center">
-  <img width="460" height="300" src=https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg>
+  <img width="400" height="300" src=https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg>
 </p>
 
 ![https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg](https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg)
