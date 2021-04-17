@@ -8,9 +8,11 @@ Most causal relationships in machine learning are direct, i.e. all the features 
 
 Structural equation modeling provides a means of estimating such relationships. In the example of my [research](https://www.koreascience.or.kr/article/JAKO201816357066272.page), co-authored with Professors Youngjin Bahng and Doris Kincaid, the model from that diagram was estimated as an SEM model:
 
-![Path_diagram.png](Path_diagram.png)
+<p align="center">
+  <img width="500" height="500" src=Path_diagram.png>
+</p>
 
-In [arXiv 2008.13038](https://arxiv.org/abs/2008.13038), I take that structural model and turn it into the following [causal Bayesian neural network](https://www.quantamagazine.org/to-build-truly-intelligent-machines-teach-them-cause-and-effect-20180515/):
+In [my presentation](https://ww2.amstat.org/meetings/sdss/2021/onlineprogram/AbstractDetails.cfm?AbstractID=309750) at the 2021 ASA Symposium on Data Science and Statistics ([full paper](https://arxiv.org/abs/2008.13038)), I take that structural model and turn it into the following [causal Bayesian neural network](https://www.quantamagazine.org/to-build-truly-intelligent-machines-teach-them-cause-and-effect-20180515/):
 
 ![Figure4.jpg](Figure4.jpg)
 
