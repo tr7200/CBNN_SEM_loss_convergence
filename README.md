@@ -27,8 +27,6 @@ Extrinsically, the neural network provides a prediction interval with upper and 
   <img width="400" height="300" src=https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg>
 </p>
 
-![https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg](https://mir-s3-cdn-cf.behance.net/projects/404/11278773.54812a20214b7.jpg)
-
-The code uses version 0.7.0 of Tensorflow-probability.
+This code uses version 0.7.0 of Tensorflow-probability and Scikit-Learn to organize the experiments.
 
 *Image credit Behance.net, creative commons license*
