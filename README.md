@@ -14,7 +14,10 @@ Structural equation modeling provides a means of estimating such relationships. 
 
 In [my presentation](https://ww2.amstat.org/meetings/sdss/2021/onlineprogram/AbstractDetails.cfm?AbstractID=309750) at the 2021 ASA Symposium on Data Science and Statistics ([full paper](https://arxiv.org/abs/2008.13038)), I take that structural model and turn it into the following [causal Bayesian neural network](https://www.quantamagazine.org/to-build-truly-intelligent-machines-teach-them-cause-and-effect-20180515/):
 
-![Figure4.jpg](Figure4.jpg)
+
+<p align="center">
+  <img width="460" height="800" src=Figure4.jpg>
+</p>
 
 Why? Considering the intrinsic properties of the causal Bayesian neural network, the processing of tuning such a neural network can reveal much about the relationship between the features and firm performance. If hyperparameter tuning chooses neural network layer densities that are wider than the number of features in a particular node, then that indicates greater aleotoric uncertainty, and that prediction might improve with the addition of other features. In domains such as alternative data for investments and [other areas](https://youtu.be/DEHqIxX1Kq4) [of finance](https://youtu.be/LlzVlqVzeD8), that can indicate causal indicators that could use additional research.
 
