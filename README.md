@@ -16,7 +16,7 @@ In [my presentation](https://ww2.amstat.org/meetings/sdss/2021/onlineprogram/Abs
 
 
 <p align="center">
-  <img width="460" height="800" src=Figure4.jpg>
+  <img width="360" height="600" src=Figure4.jpg>
 </p>
 
 Why? Considering the intrinsic properties of the causal Bayesian neural network, the processing of tuning such a neural network can reveal much about the relationship between the features and firm performance. If hyperparameter tuning chooses neural network layer densities that are wider than the number of features in a particular node, then that indicates greater aleotoric uncertainty, and that prediction might improve with the addition of other features. In domains such as alternative data for investments and [other areas](https://youtu.be/DEHqIxX1Kq4) [of finance](https://youtu.be/LlzVlqVzeD8), that can indicate causal indicators that could use additional research.
