@@ -26,24 +26,8 @@ from sklearn.model_selection import RepeatedKFold
 from sklearn.preprocessing import MinMaxScaler
 
 
-logging.disable(logging.WARNING)
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
-SEED = 1387
-random.seed(SEED)
-np.random.seed(SEED)
-
-
-INDPENDENT_VARS = 'independent_variables.csv'
-DEPENDENT_VAR = 'firm_perf_total.csv'
-
-
-tf.reset_default_graph()
-
-
-
-def main(independent_vars: str=INDEPENDENT_VARS,
-         dependent_var: str=DEPENDENT_VAR):
+def main(independent_vars: str=None,
+         dependent_var: str=None):
     """Training loop for main result - Figure 1"""
     independent_variables = pd.read_csv(, sep=',', header=0).astype('float32')
     firm_performance = pd.read_csv(, sep=',', header=0)
@@ -119,10 +103,24 @@ def main(independent_vars: str=INDEPENDENT_VARS,
                                  batch_size=4,
                                  verbose=1,
                                  validation_split=0.05)
+
+        return result
         
         
         
 if __name__ == '__main__':
+    logging.disable(logging.WARNING)
+    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
+    SEED = 1387
+    random.seed(SEED)
+    np.random.seed(SEED)
+
+    INDPENDENT_VARS = 'independent_variables.csv'
+    DEPENDENT_VAR = 'firm_perf_total.csv'
+
+    tf.reset_default_graph()
+    
     result = main(independent_vars=INDEPENDENT_VARS,
                   dependent_var=DEPENDENT_VAR)
     
